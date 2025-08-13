@@ -23,9 +23,9 @@ Map a local image to the expected path and expose the web UI on port 8080:
 
 ```bash
 docker run -it --rm \
-  -v /absolute/path/to/your_image.tiff:/opt/qupath/infile.tiff \
+  -v /absolute/path/to/infile.tiff:/opt/qupath/infile.tiff \
   -p 8080:5800 \
-  quay.io/viascientific/qupath:1.1
+  quay.io/mark_viascientific/qupath:0.6.0
 ```
 
 Then browse to `http://localhost:8080` to access QuPath’s GUI (noVNC). Optionally map `-p 5900:5900` to use a native VNC client.
@@ -35,9 +35,9 @@ Mount a directory of images and open them from QuPath’s File menu:
 
 ```bash
 docker run -it --rm \
-  -v /absolute/path/to/images:/images \
+  -v /absolute/path/to/infile.tiff:/opt/qupath/infile.tiff \
   -p 8080:5800 \
-  quay.io/viascientific/qupath:1.1
+  quay.io/mark_viascientific/qupath:0.6.0
 ```
 
 ### Persist configuration (optional)
@@ -48,9 +48,9 @@ docker run -it --rm \
   -v /absolute/path/to/your_image.tiff:/opt/qupath/infile.tiff \
   -v /absolute/path/to/qupath-config:/config \
   -p 8080:5800 \
-  quay.io/viascientific/qupath:1.1
+  quay.io/mark_viascientific/qupath:0.6.0
 ```
 
 ### Notes
-- The special path `/opt/qupath/infile.tiff` is used so external systems (e.g., Galaxy/Foundry) can inject the user-selected image for auto-loading.
-- The image uses the base image’s default entrypoint, so you don’t need to pass `/init` or `/start` explicitly.
+- The special path `/opt/qupath/infile.tiff` is used so external systems can inject the user-selected image for auto-loading.
+- The image uses the base image’s default entry point, so you don’t need to pass `/init` or `/start` explicitly.
